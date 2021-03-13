@@ -1,13 +1,19 @@
 <template>
   <div>
     <header>
-      <nav>
-        <router-link to="/">サ飯log</router-link>
-      </nav>
-      <nav>
-        <router-link to="/login" class="headerLink">ログイン</router-link>
-        <router-link to="/signup" class="headerLink">新規登録</router-link>
-      </nav>
+      <div class="headerImage">
+        <nav>
+          <router-link to="/" class="headerLink-left">サ飯log</router-link>
+        </nav>
+        <nav>
+          <router-link to="/login" class="headerLink-right"
+            >ログイン</router-link
+          >
+          <router-link to="/signup" class="headerLink-right"
+            >新規登録</router-link
+          >
+        </nav>
+      </div>
     </header>
 
     <router-view></router-view>
@@ -16,30 +22,35 @@
 
 <script>
 // import Main from "./components/Main";
-
-export default {
-  name: "App",
-
-  // components: {
-  //   Main,
-  // },
-
-  data: () => ({
-    //
-  }),
-};
 </script>
 
 <style scoped>
 header {
-  width: auto;
-  height: 70px;
-  background-color: #f78a00a6;
+  width: 100%;
+  height: 300px;
+  /* display: flex;
+  justify-content: space-between; */
+  /* background-image: url(../public/サウナ画像.jpg);
+  object-fit: cover;
+  background-size: cover; */
+}
+.headerImage {
+  width: 100%;
+  height: 300px;
+  background-image: url(../public/サウナ画像.jpg);
+  -moz-background-size: auto 100%;
+  background-size: auto 100%;
+  object-fit: cover;
   display: flex;
   justify-content: space-between;
-  vertical-align: middle;
 }
-.headerLink {
+.headerLink-left {
+  text-decoration: none;
+  color: #ffffff;
+}
+.headerLink-right {
   margin-right: 10px;
+  text-decoration: none;
+  color: black;
 }
 </style>
