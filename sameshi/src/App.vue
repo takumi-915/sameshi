@@ -1,22 +1,25 @@
 <template>
   <div>
     <header>
-      <div class="headerImage">
-        <nav>
-          <router-link to="/" class="headerLink-left">サ飯log</router-link>
-        </nav>
-        <nav>
-          <router-link to="/login" class="headerLink-right"
-            >ログイン</router-link
-          >
-          <router-link to="/signup" class="headerLink-right"
-            >新規登録</router-link
-          >
-        </nav>
-      </div>
+      <nav class="headerLink-left">
+        <router-link to="/" class="headerLink-left-text">サ飯log</router-link>
+      </nav>
+      <nav class="headerLink-right">
+        <router-link to="/login" class="headerLink-right-text"
+          >ログイン</router-link
+        >
+        <router-link to="/signup" class="headerLink-right-text"
+          >新規登録</router-link
+        >
+      </nav>
     </header>
+    <img src="../public/サウナ.jpg" class="headerImage" />
 
     <router-view></router-view>
+
+    <footer>
+      <p>footer</p>
+    </footer>
   </div>
 </template>
 
@@ -27,30 +30,33 @@
 <style scoped>
 header {
   width: 100%;
-  height: 300px;
-  /* display: flex;
-  justify-content: space-between; */
-  /* background-image: url(../public/サウナ画像.jpg);
-  object-fit: cover;
-  background-size: cover; */
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  background-color: orange;
 }
 .headerImage {
   width: 100%;
   height: 300px;
-  background-image: url(../public/サウナ画像.jpg);
-  -moz-background-size: auto 100%;
-  background-size: auto 100%;
   object-fit: cover;
-  display: flex;
-  justify-content: space-between;
 }
 .headerLink-left {
-  text-decoration: none;
+  margin: 2%;
+}
+.headerLink-left-text {
   color: #ffffff;
+  text-decoration: none;
 }
 .headerLink-right {
-  margin-right: 10px;
+  margin: 2%;
+}
+.headerLink-right-text {
   text-decoration: none;
-  color: black;
+  color: #ffffff;
+  padding-right: 3px;
+}
+footer {
+  height: 200px;
+  background-color: orchid;
 }
 </style>
