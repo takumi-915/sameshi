@@ -7,15 +7,34 @@
         >
       </router-link>
     </div>
-    <h1>aaa</h1>
+    <v-col cols="8">
+      <div v-for="post in posts" :key="post.name">
+        <div>店名：{{ post.fields.restaurant.stringValue }}</div>
+        <div>メニュー：{{ post.fields.menu.stringValue }}</div>
+        <div>詳細：{{ post.fields.detail.stringValue }}</div>
+        <div>サウナ：{{ post.fields.sauna.stringValue }}</div>
+      </div>
+    </v-col>
   </v-app>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: "HelloWorld",
-
-  data: () => ({}),
+  data() {
+    return {
+      restaurant: [],
+      menu: [],
+      detail: [],
+      sauna: [],
+      posts: [],
+    };
+  },
+  created() {
+    axios.get("/posts").then((response) => {
+      this.posts = response.data.documents;
+    });
+  },
 };
 </script>
 
