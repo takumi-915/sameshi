@@ -51,6 +51,9 @@
                   height="48px"
                   outlined
                   placeholder="メールアドレス"
+                  id="email"
+                  type="email"
+                  v-model="email"
                 ></v-text-field>
                 <v-text-field
                   dense
@@ -58,6 +61,9 @@
                   name="input-password"
                   outlined
                   placeholder="パスワード"
+                  id="password"
+                  type="password"
+                  v-model="password"
                   @click:append="passwordShow = !passwordShow"
                 ></v-text-field>
               </div>
@@ -68,9 +74,17 @@
                   depressed
                   height="48px"
                   tile
+                  @click="login"
                 >
                   ログイン
                 </v-btn>
+              </div>
+              <v-divider></v-divider>
+              <div class="pt-8 pb-4">
+                <span>初めてのログインの場合は</span><br />
+                <router-link to="/signUp"
+                  >こちらをクリックしてください</router-link
+                >
               </div>
             </div>
           </div>
@@ -84,9 +98,23 @@
 // import { defineComponent } from '@vue/composition-api'
 
 export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
   methods: {
     toTop() {
       this.$router.push("/");
+    },
+    login() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
+      this.email = "";
+      this.password = "";
     },
   },
 };

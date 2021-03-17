@@ -30,6 +30,11 @@ export default {
       posts: [],
     };
   },
+  // computed: {
+  //   idToken() {
+  //     return this.$store.getters.idToken;
+  //   },
+  // },
   created() {
     axios.get("/posts").then((response) => {
       this.posts = response.data.documents;

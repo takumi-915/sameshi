@@ -4,13 +4,17 @@
       <nav class="headerLink-left">
         <router-link to="/" class="headerLink-left-text">サ飯log</router-link>
       </nav>
-      <nav class="headerLink-right">
+      <nav class="headerLink-right" v-if="!isAutenticated">
         <router-link to="/login" class="headerLink-right-text"
           >ログイン</router-link
         >
         <router-link to="/signup" class="headerLink-right-text"
           >新規登録</router-link
         >
+      </nav>
+      <nav class="headerLink-right" v-if="isAutenticated">
+        <nav>ここにユーザーネームを入れる</nav>
+        <nav class="headerLink-right-text" @click="logout">ログアウト</nav>
       </nav>
     </header>
     <img src="../public/サウナ.jpg" class="headerImage" />
@@ -24,7 +28,18 @@
 </template>
 
 <script>
-// import Main from "./components/Main";
+export default {
+  computed: {
+    isAutenticated() {
+      return this.$store.getters.idToken !== null;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -49,11 +64,13 @@ header {
 }
 .headerLink-right {
   margin: 2%;
+  display: flex;
 }
 .headerLink-right-text {
   text-decoration: none;
   color: #ffffff;
   padding-right: 3px;
+  cursor: pointer;
 }
 footer {
   height: 200px;
