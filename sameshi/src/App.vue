@@ -2,7 +2,7 @@
   <div>
     <header>
       <nav class="headerLink-left">
-        <router-link to="/" class="headerLink-left-text">サ飯log</router-link>
+        <router-link to="/" class="headerLink-left-text">サ飯Log</router-link>
       </nav>
       <nav class="headerLink-right" v-if="!isAutenticated">
         <router-link to="/login" class="headerLink-right-text"
@@ -22,7 +22,9 @@
     <router-view></router-view>
 
     <footer>
-      <p>footer</p>
+      <v-card-title class="text-center pa-130">
+        <h3 class="footerTitle">サ飯Log</h3>
+      </v-card-title>
     </footer>
   </div>
 </template>
@@ -48,7 +50,7 @@ header {
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: orange;
+  background-color: #ff8f00;
 }
 .headerImage {
   width: 100%;
@@ -75,5 +77,11 @@ header {
 footer {
   height: 200px;
   background-color: orchid;
+}
+.footerTitle {
+  width: 100%;
+  text-align: left;
+  color: #ffffff;
+  padding: 5%;
 }
 </style>

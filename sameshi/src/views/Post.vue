@@ -35,27 +35,27 @@ import router from "../router";
 export default {
   methods: {
     onSubmit() {
-      axios.post("/posts", {
-        fields: {
-          restaurant: {
-            stringValue: this.restaurant,
+      axios
+        .post("/posts", {
+          fields: {
+            restaurant: {
+              stringValue: this.restaurant,
+            },
+            menu: {
+              stringValue: this.menu,
+            },
+            detail: {
+              stringValue: this.detail,
+            },
+            sauna: {
+              stringValue: this.sauna,
+            },
           },
-          menu: {
-            stringValue: this.menu,
-          },
-          detail: {
-            stringValue: this.detail,
-          },
-          sauna: {
-            stringValue: this.sauna,
-          },
-        },
-      });
-      this.restaurant = "";
-      this.menu = "";
-      this.detail = "";
-      this.sauna = "";
-      router.push("/");
+        })
+        .then((response) => {
+          console.log(response);
+        });
+      router.push("/postDone");
     },
   },
 };
