@@ -1,8 +1,11 @@
 <template>
-  <v-app class="main">
+  <v-app class="main" style="background-color: #eceff1">
+    <h2 class="introduction">
+      サ飯とは？<br />- サウナで「ととのった」後に食べるご飯 -
+    </h2>
     <div class="button">
       <router-link to="/post" class="postLink"
-        ><v-btn depressed elevation="6" large color="#FF6F00" class="postButton"
+        ><v-btn depressed elevation="6" large color="#00B0FF" class="postButton"
           ><span class="btnText">投稿する</span></v-btn
         >
       </router-link>
@@ -69,6 +72,13 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  background-color: #eceff1;
+}
+.introduction {
+  text-align: center;
+  margin: 3% 0;
+}
 .button {
   width: 100%;
   text-align: center;

@@ -1,9 +1,9 @@
 <template>
-  <v-app>
-    <div>
-      <h2>あなたのサ飯を教えてください</h2>
+  <v-app class="body">
+    <div class="main">
+      <h2 class="title">あなたのサ飯を教えてください</h2>
       <v-row>
-        <v-col cols="4">
+        <v-col cols="7" class="contents">
           <form>
             <v-text-field v-model="restaurant" label="店名"></v-text-field>
             <v-text-field v-model="menu" label="メニュー"></v-text-field>
@@ -17,7 +17,7 @@
               depressed
               elevation="6"
               large
-              color="accent"
+              color="#00B0FF"
               class="post"
               @click="onSubmit"
               >投稿する</v-btn
@@ -62,4 +62,25 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  width: 100%;
+}
+.title {
+  text-align: center;
+  margin: 5% 0;
+  font-weight: bold;
+}
+.body {
+  background-color: #eceff1;
+}
+.contents {
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+.post {
+  color: #ffffff;
+  height: 50px;
+  width: 20%;
+  margin-top: 5%;
+}
 </style>

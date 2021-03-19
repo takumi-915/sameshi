@@ -76,7 +76,7 @@ header {
 }
 footer {
   height: 200px;
-  background-color: orchid;
+  background-color: #ff8f00;
 }
 .footerTitle {
   width: 100%;
