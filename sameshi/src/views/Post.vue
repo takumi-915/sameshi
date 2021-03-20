@@ -11,6 +11,19 @@
               v-model="detail"
               label="詳細(感想や価格など)"
             ></v-textarea>
+            <img
+              v-if="uploadImageUrl"
+              :src="this.uploadImageUrl"
+              class="imageFile"
+            />
+            <v-file-input
+              v-model="input_image"
+              accept="image/*"
+              show-size
+              label="画像ファイルをアップロードしてください"
+              prepend-icon="mdi-image"
+              @change="onImagePicked"
+            ></v-file-input>
             <v-text-field v-model="sauna" label="近隣サウナ"></v-text-field>
             <!-- <v-text-field v-model="image" label="画像"></v-text-field> -->
             <v-btn
@@ -32,8 +45,33 @@
 <script>
 import axios from "axios";
 import router from "../router";
+import upload from "../firebase/storage";
+
 export default {
+  data() {
+    // 画像表示
+    return {
+      uploadImageUrl: "",
+    };
+  },
   methods: {
+    submit() {
+      upload(this.input_image, this.formdata.title).then(() => {});
+    },
+    onImagePicked(file) {
+      if (file !== undefined && file !== null) {
+        if (file.name.lastIndexOf(".") <= 0) {
+          return;
+        }
+        const fr = new FileReader();
+        fr.readAsDataURL(file);
+        fr.addEventListener("load", () => {
+          this.uploadImageUrl = fr.result;
+        });
+      } else {
+        this.uploadImageUrl = "";
+      }
+    },
     onSubmit() {
       axios
         .post("/posts", {
@@ -82,5 +120,10 @@ export default {
   height: 50px;
   width: 20%;
   margin-top: 5%;
+}
+.imageFile {
+  width: 100%;
+  height: 300px;
+  object-fit: scale-down;
 }
 </style>

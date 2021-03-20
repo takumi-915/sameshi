@@ -11,7 +11,7 @@
       </router-link>
     </div>
     <v-row style="height: auto" align-content="center" class="contents">
-      <v-col cols="4" v-for="post in posts" :key="post.name" class="card">
+      <v-col cols="4" v-for="post in posts" :key="post.id" class="card">
         <v-card class="mx-auto" max-width="344">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
