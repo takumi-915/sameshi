@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    posts: [],
     idToken: null
   },
   getters: {
@@ -16,6 +17,10 @@ export default new Vuex.Store({
   mutations: {
     updateIdToken(state, idToken) {
       state.idToken = idToken;
+    },
+    DELETE_POST(state, postId) { // 追加 ②
+      const posts = state.posts.filter(b => b.id != postId)
+      state.posts = posts
     }
   },
   actions: {
@@ -32,7 +37,7 @@ export default new Vuex.Store({
         .then((response) => {
           commit('updateIdToken', response.data.idToken);
           setTimeout(() => {
-            dispatch('refreshIdtoken', response.data.refreshToken)
+            dispatch('refreshIdToken', response.data.refreshToken)
           }, response.data.expiresIn * 1000);
           router.push('/');
         });
@@ -64,6 +69,10 @@ export default new Vuex.Store({
           commit('updateIdToken', response.data.idToken);
           router.push('/')
         });
+    },
+    deletePost({ commit }, post) { // 追加 ①
+      axios.delete(`/posts/${post.id}`, post)
+      commit('DELETE_POST', post.id)
     }
   }
 });

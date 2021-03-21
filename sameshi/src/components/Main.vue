@@ -36,6 +36,9 @@
               <v-card-text>
                 詳細：{{ post.fields.detail.stringValue }}<br />
                 サウナ：{{ post.fields.sauna.stringValue }}
+                <v-btn class="button_link" @click="deletePost(post)"
+                  >削除する</v-btn
+                >
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -63,6 +66,12 @@ export default {
   //     return this.$store.getters.idToken;
   //   },
   // },
+  methods: {
+    deletePost(post) {
+      // 追加
+      this.$store.dispatch("deletePost", post);
+    },
+  },
   created() {
     axios.get("/posts").then((response) => {
       this.posts = response.data.documents;
