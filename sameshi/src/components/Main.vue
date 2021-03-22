@@ -69,7 +69,8 @@ export default {
   methods: {
     deletePost(post) {
       // 追加
-      this.$store.dispatch("deletePost", post);
+      // this.$store.dispatch("deletePost", post);
+      console.log(post);
     },
   },
   created() {

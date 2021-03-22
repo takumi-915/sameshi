@@ -20,6 +20,7 @@
                 outlined
                 style="border-color: #979797"
                 tile
+                @click="googleLogin"
               >
                 <img
                   class="button-logo-img mr-4"
@@ -82,7 +83,7 @@
               <v-divider></v-divider>
               <div class="pt-8 pb-4">
                 <span>初めてのログインの場合は</span><br />
-                <router-link to="/signUp"
+                <router-link to="/login"
                   >こちらをクリックしてください</router-link
                 >
               </div>
@@ -96,6 +97,7 @@
 
 <script>
 // import { defineComponent } from '@vue/composition-api'
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -105,6 +107,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["googleLogin"]),
+
     toTop() {
       this.$router.push("/");
     },

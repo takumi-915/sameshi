@@ -2,12 +2,15 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "../axios-auth";
 import router from '../router';
-import axiosRefresh from '../axios-refresh'
+// import axiosRefresh from '../axios-refresh'
+import firebase from 'firebase'
+
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    googleLogin_user: null,
     posts: [],
     idToken: null
   },
@@ -15,6 +18,12 @@ export default new Vuex.Store({
     idToken: state => state.idToken
   },
   mutations: {
+    setLoginUser(state, user) {
+      state.googleLogin_user = user
+    },
+    deleteLoginUser(state) {
+      state.googleLogin_user = null
+    },
     updateIdToken(state, idToken) {
       state.idToken = idToken;
     },
@@ -42,18 +51,32 @@ export default new Vuex.Store({
           router.push('/');
         });
     },
+    setLoginUser({ commit }, user) {
+      commit('setLoginUser', user);
+      router.push('/');
+    },
+    googleLogin() {
+      const google_auth_provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithRedirect(google_auth_provider)
+    },
+    deleteLoginUser({ commit }) {
+      commit('deleteLoginUser')
+    },
+    googleLogout() {
+      firebase.auth().signOut()
+    },
     logout({ commit }) {
       commit('updateIdToken', null);
       router.replace('/')
     },
-    refreshToken({ commit, dispatch }, refreshToken) {
-      axiosRefresh.post('/token?key=AIzaSyB1OCfEstfBozmI8v1_tipkdyf9WEwL06M', { grant_type: 'refresh_token', refresh_token: refreshToken }).then(response => {
-        commit('updateIdToken', response.data.id_token);
-        setTimeout(() => {
-          dispatch('refreshIdtToken', response.data.id_token);
-        }, response.data.expires_in * 1000)
-      });
-    },
+    // refreshToken({ commit, dispatch }, refreshToken) {
+    //   axiosRefresh.post('/token?key=AIzaSyB1OCfEstfBozmI8v1_tipkdyf9WEwL06M', { grant_type: 'refresh_token', refresh_token: refreshToken }).then(response => {
+    //     commit('updateIdToken', response.data.id_token);
+    //     setTimeout(() => {
+    //       dispatch('refreshIdtToken', response.data.id_token);
+    //     }, response.data.expires_in * 1000)
+    //   });
+    // },
     signUp({ commit }, authData) {
       axios
         .post(

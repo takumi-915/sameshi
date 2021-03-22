@@ -30,13 +30,25 @@
 </template>
 
 <script>
+import firebase from "firebase";
+import { mapActions } from "vuex";
 export default {
   computed: {
     isAutenticated() {
       return this.$store.getters.idToken !== null;
     },
   },
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setLoginUser(user);
+      } else {
+        this.deleteLoginUser();
+      }
+    });
+  },
   methods: {
+    ...mapActions(["setLoginUser", "deleteLoginUser", "googleLogout"]),
     logout() {
       this.$store.dispatch("logout");
     },
