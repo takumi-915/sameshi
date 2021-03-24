@@ -46,12 +46,14 @@
 import axios from "axios";
 import router from "../router";
 import upload from "../firebase/storage";
+// import { mapActions } from "vuex";
 
 export default {
   data() {
     // 画像表示
     return {
       uploadImageUrl: "",
+      // post: {},
     };
   },
   methods: {
@@ -73,6 +75,9 @@ export default {
       }
     },
     onSubmit() {
+      // this.addPost(this.post);
+      // router.push("/postDone");
+      // this.post = {};
       axios
         .post("/posts", {
           fields: {
@@ -95,6 +100,7 @@ export default {
         });
       router.push("/postDone");
     },
+    // ...mapActions(["addPost"]),
   },
 };
 </script>

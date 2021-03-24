@@ -15,7 +15,9 @@ export default new Vuex.Store({
     idToken: null
   },
   getters: {
-    idToken: state => state.idToken
+    idToken: state => state.idToken,
+    userName: state => state.googleLogin_user ? state.googleLogin_user.displayName : '',
+    uid: state => state.googleLogin_user ? state.googleLogin_user.uid : null
   },
   mutations: {
     setLoginUser(state, user) {
@@ -26,6 +28,9 @@ export default new Vuex.Store({
     },
     updateIdToken(state, idToken) {
       state.idToken = idToken;
+    },
+    addPost(state, post) {
+      state.addPost.push(post)
     },
     DELETE_POST(state, postId) { // 追加 ②
       const posts = state.posts.filter(b => b.id != postId)
@@ -64,10 +69,15 @@ export default new Vuex.Store({
     },
     googleLogout() {
       firebase.auth().signOut()
+      router.replace('/');
     },
     logout({ commit }) {
       commit('updateIdToken', null);
       router.replace('/')
+    },
+    addPost({ getters, commit }, post) {
+      if (getters.uid) firebase.firestore().collection(`users/${getters.uid}/posts`).add(post)
+      commit('addPost', post)
     },
     // refreshToken({ commit, dispatch }, refreshToken) {
     //   axiosRefresh.post('/token?key=AIzaSyB1OCfEstfBozmI8v1_tipkdyf9WEwL06M', { grant_type: 'refresh_token', refresh_token: refreshToken }).then(response => {
@@ -93,8 +103,8 @@ export default new Vuex.Store({
           router.push('/')
         });
     },
-    deletePost({ commit }, post) { // 追加 ①
-      axios.delete(`/posts/${post.id}`, post)
+    async deletePost({ commit }, post) { // 追加 ①
+      await axios.delete(`/posts/${post.id}`, post)
       commit('DELETE_POST', post.id)
     }
   }

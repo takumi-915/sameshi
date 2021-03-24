@@ -4,7 +4,10 @@
       <nav class="headerLink-left">
         <router-link to="/" class="headerLink-left-text">サ飯Log</router-link>
       </nav>
-      <nav class="headerLink-right" v-if="!isAutenticated">
+      <nav
+        class="headerLink-right"
+        v-if="!isAutenticated && !$store.state.googleLogin_user"
+      >
         <router-link to="/login" class="headerLink-right-text"
           >ログイン</router-link
         >
@@ -15,6 +18,12 @@
       <nav class="headerLink-right" v-if="isAutenticated">
         <nav>ここにユーザーネームを入れる</nav>
         <nav class="headerLink-right-text" @click="logout">ログアウト</nav>
+      </nav>
+      <nav class="headerLink-right" v-if="$store.state.googleLogin_user">
+        <nav>{{ userName }}</nav>
+        <nav class="headerLink-right-text" @click="googleLogout">
+          ログアウト
+        </nav>
       </nav>
     </header>
     <img src="../public/サウナ.jpg" class="headerImage" />
@@ -32,11 +41,13 @@
 <script>
 import firebase from "firebase";
 import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     isAutenticated() {
       return this.$store.getters.idToken !== null;
     },
+    ...mapGetters(["userName"]),
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {

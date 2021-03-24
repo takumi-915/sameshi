@@ -1,17 +1,24 @@
 <template>
   <v-app class="main" style="background-color: #eceff1">
-    <h2 class="introduction">
+    <h1 class="mainIntroduction">あなたのサ飯教えてください</h1>
+    <h3 class="introduction">
       サ飯とは？<br />- サウナで「ととのった」後に食べるご飯 -
-    </h2>
+    </h3>
     <div class="button">
-      <router-link to="/post" class="postLink"
+      <router-link to="/post/:post_id?" class="postLink"
         ><v-btn depressed elevation="6" large color="#00B0FF" class="postButton"
-          ><span class="btnText">投稿する</span></v-btn
+          ><span class="btnText">投稿お願いします</span></v-btn
         >
       </router-link>
     </div>
     <v-row style="height: auto" align-content="center" class="contents">
-      <v-col cols="4" v-for="post in posts" :key="post.id" class="card">
+      <v-col
+        cols="4"
+        v-for="(post, index) in posts"
+        :key="post.id"
+        class="card"
+        :id="'id-' + index"
+      >
         <v-card class="mx-auto" max-width="344">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -22,7 +29,30 @@
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>地図を見る</v-btn>
+            <v-row justify="space-around">
+              <v-col cols="auto">
+                <v-dialog transition="dialog-top-transition" max-width="600">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn color="#00B0FF" v-bind="attrs" v-on="on"
+                      >地図を見る</v-btn
+                    >
+                  </template>
+                  <template v-slot:default="dialog">
+                    <v-card>
+                      <v-toolbar color="#ff8f00" dark>{{
+                        post.fields.restaurant.stringValue
+                      }}</v-toolbar>
+                      <v-card-text>
+                        <div class="text-h2 pa-12">ここに地図を埋め込む</div>
+                      </v-card-text>
+                      <v-card-actions class="justify-end">
+                        <v-btn text @click="dialog.value = false">閉じる</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </template>
+                </v-dialog>
+              </v-col>
+            </v-row>
             <v-spacer></v-spacer>
             <v-btn icon @click="show = !show">
               <v-icon>{{
@@ -35,10 +65,8 @@
               <v-divider></v-divider>
               <v-card-text>
                 詳細：{{ post.fields.detail.stringValue }}<br />
-                サウナ：{{ post.fields.sauna.stringValue }}
-                <v-btn class="button_link" @click="deletePost(post)"
-                  >削除する</v-btn
-                >
+                サウナ：{{ post.fields.sauna.stringValue }}<br />
+                <v-btn class="button_link" @click="deletePost">削除する</v-btn>
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -67,13 +95,15 @@ export default {
   //   },
   // },
   methods: {
-    deletePost(post) {
+    deletePost() {
       // 追加
-      // this.$store.dispatch("deletePost", post);
-      console.log(post);
+      axios.delete("/posts/post.id").then((response) => {
+        console.log(response);
+      });
     },
   },
   created() {
+    // this.posts = this.$store.state.posts;
     axios.get("/posts").then((response) => {
       this.posts = response.data.documents;
     });
@@ -82,6 +112,10 @@ export default {
 </script>
 
 <style scoped>
+.mainIntroduction {
+  text-align: center;
+  margin-top: 5%;
+}
 .main {
   background-color: #eceff1;
 }

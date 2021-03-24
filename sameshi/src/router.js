@@ -28,7 +28,7 @@ export default new Router({
       }
     }
   }, {
-    path: '/post', component: Post
+    path: '/post/:post_id?', component: Post
     // , beforeEnter(to, from, next) {
     //   if (store.getters.idToken) {
     //     next();
