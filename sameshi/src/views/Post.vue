@@ -25,7 +25,6 @@
               @change="onImagePicked"
             ></v-file-input>
             <v-text-field v-model="sauna" label="近隣サウナ"></v-text-field>
-            <!-- <v-text-field v-model="image" label="画像"></v-text-field> -->
             <v-btn
               depressed
               elevation="6"

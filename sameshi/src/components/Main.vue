@@ -1,5 +1,5 @@
 <template>
-  <v-app class="main" style="background-color: #eceff1">
+  <v-app class="main" style="background-color: rgb(251, 251, 251)">
     <h1 class="mainIntroduction">あなたのサ飯教えてください</h1>
     <h3 class="introduction">
       サ飯とは？<br />- サウナで「ととのった」後に食べるご飯 -
@@ -117,7 +117,7 @@ export default {
   margin-top: 5%;
 }
 .main {
-  background-color: rgb(238, 238, 238);
+  /* background-color: rgb(251, 251, 251); */
 }
 .introduction {
   text-align: center;

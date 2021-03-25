@@ -35,7 +35,9 @@
         <nav class="headerLink-right-text" @click="logout">ログアウト</nav>
       </nav>
       <nav class="headerLink-right" v-if="$store.state.googleLogin_user">
-        <nav>{{ userName }}</nav>
+        <nav style="margin-right: 20px; font-weight: bold; color: #ffffff">
+          {{ userName }}
+        </nav>
         <nav class="headerLink-right-text" @click="googleLogout">
           ログアウト
         </nav>
