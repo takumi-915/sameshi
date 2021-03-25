@@ -1,19 +1,34 @@
 <template>
   <div>
-    <header>
-      <nav class="headerLink-left">
+    <v-app-bar :clipped-left="clipped" app style="background-color: #ff8f00">
+      <v-toolbar-title class="title">
         <router-link to="/" class="headerLink-left-text">サ飯Log</router-link>
-      </nav>
+      </v-toolbar-title>
+      <v-tabs hide-slider class="header-menu" style="padding-left: 30px">
+        <v-tabs-slider />
+        <v-tab class="header-menu-list">
+          <router-link to="/" style="color: #ffffff; text-decoration: none">
+            ホーム
+          </router-link>
+        </v-tab>
+        <v-tab class="header-menu-list">
+          <span style="color: #ffffff">サ飯とは</span>
+        </v-tab>
+      </v-tabs>
       <nav
         class="headerLink-right"
         v-if="!isAutenticated && !$store.state.googleLogin_user"
       >
-        <router-link to="/login" class="headerLink-right-text"
-          >ログイン</router-link
-        >
-        <router-link to="/signup" class="headerLink-right-text"
-          >新規登録</router-link
-        >
+        <v-btn text class="ml-4 mr-2">
+          <router-link to="/login" class="headerLink-right-text"
+            >ログイン</router-link
+          >
+        </v-btn>
+        <v-btn text class="ml-4 mr-2">
+          <router-link to="/signup" class="headerLink-right-text"
+            >新規登録</router-link
+          >
+        </v-btn>
       </nav>
       <nav class="headerLink-right" v-if="isAutenticated">
         <nav>ここにユーザーネームを入れる</nav>
@@ -25,14 +40,14 @@
           ログアウト
         </nav>
       </nav>
-    </header>
+    </v-app-bar>
     <img src="../public/サウナ.jpg" class="headerImage" />
 
     <router-view></router-view>
 
     <footer>
       <v-card-title class="text-center pa-130">
-        <h3 class="footerTitle">サ飯Log</h3>
+        <h5 class="footerTitle">© 2021 サ飯Log</h5>
       </v-card-title>
     </footer>
   </div>
@@ -69,16 +84,26 @@ export default {
 
 <style scoped>
 header {
-  width: 100%;
+  /* width: 100%;
   height: 60px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; */
   background-color: #ff8f00;
+}
+.header-menu {
+  width: 10%;
+}
+.title {
+  color: #fff;
+  font-size: 35px;
+  font-family: "Fraunces", serif;
+  margin-left: 10px;
 }
 .headerImage {
   width: 100%;
   height: 300px;
   object-fit: cover;
+  margin-top: 56px;
 }
 .headerLink-left {
   margin: 2%;
@@ -96,15 +121,16 @@ header {
   color: #ffffff;
   padding-right: 3px;
   cursor: pointer;
+  font-weight: bold;
 }
 footer {
-  height: 200px;
+  height: 70px;
   background-color: #ff8f00;
 }
 .footerTitle {
   width: 100%;
   text-align: left;
   color: #ffffff;
-  padding: 5%;
+  text-align: center;
 }
 </style>
