@@ -18,6 +18,7 @@
             />
             <v-file-input
               v-model="input_image"
+              type="file"
               accept="image/*"
               show-size
               label="画像ファイルをアップロードしてください"
@@ -45,6 +46,8 @@
 import axios from "axios";
 import router from "../router";
 import upload from "../firebase/storage";
+import firebase from "firebase/app";
+import "firebase/storage";
 // import { mapActions } from "vuex";
 
 export default {
@@ -59,19 +62,12 @@ export default {
     submit() {
       upload(this.input_image, this.formdata.title).then(() => {});
     },
-    onImagePicked(file) {
-      if (file !== undefined && file !== null) {
-        if (file.name.lastIndexOf(".") <= 0) {
-          return;
-        }
-        const fr = new FileReader();
-        fr.readAsDataURL(file);
-        fr.addEventListener("load", () => {
-          this.uploadImageUrl = fr.result;
-        });
-      } else {
-        this.uploadImageUrl = "";
-      }
+    onImagePicked(event) {
+      let file = event.target.files[0];
+      const storageRef = firebase.storage().ref("images/" + file.name);
+      storageRef.put(file).then(() => {
+        console.log("uploaded file");
+      });
     },
     onSubmit() {
       // this.addPost(this.post);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar :clipped-left="clipped" app style="background-color: #ff8f00">
+    <v-app-bar :clipped-left="clipped" app style="background-color: #ef6c00">
       <v-toolbar-title class="title">
         <router-link to="/" class="headerLink-left-text">サ飯Log</router-link>
       </v-toolbar-title>
@@ -43,7 +43,7 @@
         </nav>
       </nav>
     </v-app-bar>
-    <img src="../public/サウナ.jpg" class="headerImage" />
+    <img src="../public/サウナ写真.png" class="headerImage" />
 
     <router-view></router-view>
 
@@ -103,7 +103,7 @@ header {
 }
 .headerImage {
   width: 100%;
-  height: 300px;
+  height: 500px;
   object-fit: cover;
   margin-top: 56px;
 }
@@ -127,12 +127,13 @@ header {
 }
 footer {
   height: 70px;
-  background-color: #ff8f00;
+  background-color: #ef6c00;
 }
 .footerTitle {
   width: 100%;
   text-align: left;
   color: #ffffff;
   text-align: center;
+  font-family: "Fraunces", serif;
 }
 </style>

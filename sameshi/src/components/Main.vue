@@ -6,7 +6,7 @@
     </h3>
     <div class="button">
       <router-link to="/post/:post_id?" class="postLink"
-        ><v-btn depressed elevation="6" large color="#00B0FF" class="postButton"
+        ><v-btn depressed elevation="6" large color="#EF6C00" class="postButton"
           ><span class="btnText">投稿お願いします</span></v-btn
         >
       </router-link>
@@ -29,11 +29,15 @@
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
           <v-card-actions>
-            <v-row justify="space-around">
+            <v-row justify="space-around" style="margin-right: 44%">
               <v-col cols="auto">
                 <v-dialog transition="dialog-top-transition" max-width="600">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="#00B0FF" v-bind="attrs" v-on="on"
+                    <v-btn
+                      color="#90A4AE"
+                      v-bind="attrs"
+                      v-on="on"
+                      style="color: #ffffff"
                       >地図を見る</v-btn
                     >
                   </template>
@@ -66,7 +70,13 @@
               <v-card-text>
                 詳細：{{ post.fields.detail.stringValue }}<br />
                 サウナ：{{ post.fields.sauna.stringValue }}<br />
-                <v-btn class="button_link" @click="deletePost">削除する</v-btn>
+                <v-btn
+                  class="button_link"
+                  color="#EF5350"
+                  style="color: white; margin-top: 2%"
+                  @click="deletePost"
+                  >削除する</v-btn
+                >
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -129,7 +139,8 @@ export default {
   padding: 2% 2% 0 2%;
 }
 .postButton {
-  height: 50px;
+  height: 57px !important;
+  font-size: 15px;
   width: 30%;
 }
 .postLink {
@@ -144,7 +155,6 @@ export default {
 .card {
   width: 37%;
 }
-
 .mx-auto {
   margin: 10% 0;
 }
