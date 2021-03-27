@@ -126,9 +126,6 @@ export default {
   text-align: center;
   margin-top: 5%;
 }
-.main {
-  /* background-color: rgb(251, 251, 251); */
-}
 .introduction {
   text-align: center;
   margin: 3% 0;

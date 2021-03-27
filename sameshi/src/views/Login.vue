@@ -83,7 +83,7 @@
               <v-divider></v-divider>
               <div class="pt-8 pb-4">
                 <span>初めてのログインの場合は</span><br />
-                <router-link to="/login"
+                <router-link to="/SignUp"
                   >こちらをクリックしてください</router-link
                 >
               </div>
