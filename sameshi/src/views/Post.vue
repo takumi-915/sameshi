@@ -45,7 +45,6 @@
 <script>
 import axios from "axios";
 import router from "../router";
-import upload from "../firebase/storage";
 import firebase from "firebase/app";
 import "firebase/storage";
 // import { mapActions } from "vuex";
@@ -55,20 +54,47 @@ export default {
     // 画像表示
     return {
       uploadImageUrl: "",
+      errorMessage: "",
+      reset: true,
       // post: {},
     };
   },
   methods: {
-    submit() {
-      upload(this.input_image, this.formdata.title).then(() => {});
-    },
-    onImagePicked(event) {
-      let file = event.target.files[0];
-      const storageRef = firebase.storage().ref("images/" + file.name);
+    onImagePicked(file) {
+      if (!file.type.includes("image")) {
+        this.errorMessage = "画像を指定してください";
+        this.inputFileReset();
+        return;
+      }
+
+      const storageRef = firebase.storage().ref(file.name);
       storageRef.put(file).then(() => {
-        console.log("uploaded file");
+        firebase
+          .storage()
+          .ref(file.name)
+          .getDownloadURL()
+          .then((url) => {
+            this.post.image = url;
+          })
+          .catch((err) => {
+            this.errorMessage = err;
+          });
+
+        if (file !== undefined && file !== null) {
+          if (file.name.lastIndexOf(".") <= 0) {
+            return;
+          }
+          const fr = new FileReader();
+          fr.readAsDataURL(file);
+          fr.addEventListener("load", () => {
+            this.uploadImageUrl = fr.result;
+          });
+        } else {
+          this.uploadImageUrl = "";
+        }
       });
     },
+
     onSubmit() {
       // this.addPost(this.post);
       // router.push("/postDone");
@@ -91,9 +117,16 @@ export default {
           },
         })
         .then((response) => {
+          this.inputFileReset();
           console.log(response);
         });
       router.push("/postDone");
+    },
+    inputFileReset() {
+      this.reset = false;
+      this.$nextTick(function () {
+        this.reset = true;
+      });
     },
     // ...mapActions(["addPost"]),
   },

@@ -88,6 +88,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -106,9 +107,8 @@ export default {
   // },
   methods: {
     deletePost() {
-      // 追加
-      axios.delete("/posts/post.id").then((response) => {
-        console.log(response);
+      axios.delete("/posts/{postsID}").then(() => {
+        console.log("Document successfully deleted!");
       });
     },
   },
