@@ -30,7 +30,7 @@
               depressed
               elevation="6"
               large
-              color="#00B0FF"
+              color="#ef6c00"
               class="post"
               @click="onSubmit"
               >投稿する</v-btn

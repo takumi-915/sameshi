@@ -1,8 +1,8 @@
 <template>
   <v-app class="main" style="background-color: rgb(251, 251, 251)">
-    <h1 class="mainIntroduction">あなたのサ飯教えてください</h1>
+    <h1 class="mainIntroduction">あなたの「サ飯」教えてください</h1>
     <h3 class="introduction">
-      サ飯とは？<br />- サウナで「ととのった」後に食べるご飯 -
+      サ飯とは？<br />ー サウナで「ととのった」後に食べるご飯 ー
     </h3>
     <div class="button">
       <router-link to="/post/:post_id?" class="postLink"
