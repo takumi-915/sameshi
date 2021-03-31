@@ -43,11 +43,12 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import router from "../router";
 import firebase from "firebase/app";
 import "firebase/storage";
 // import { mapActions } from "vuex";
+import { db } from "../firebase/firebase";
 
 export default {
   data() {
@@ -56,6 +57,7 @@ export default {
       uploadImageUrl: "",
       errorMessage: "",
       reset: true,
+
       // post: {},
     };
   },
@@ -99,27 +101,35 @@ export default {
       // this.addPost(this.post);
       // router.push("/postDone");
       // this.post = {};
-      axios
-        .post("/posts", {
-          fields: {
-            restaurant: {
-              stringValue: this.restaurant,
-            },
-            menu: {
-              stringValue: this.menu,
-            },
-            detail: {
-              stringValue: this.detail,
-            },
-            sauna: {
-              stringValue: this.sauna,
-            },
-          },
-        })
-        .then((response) => {
-          this.inputFileReset();
-          console.log(response);
-        });
+      // axios
+      //   .post("/posts", {
+      //     fields: {
+      //       restaurant: {
+      //         stringValue: this.restaurant,
+      //       },
+      //       menu: {
+      //         stringValue: this.menu,
+      //       },
+      //       detail: {
+      //         stringValue: this.detail,
+      //       },
+      //       sauna: {
+      //         stringValue: this.sauna,
+      //       },
+      //     },
+      //   })
+      //   .then((response) => {
+      //     this.inputFileReset();
+      //     console.log(response);
+      //   });
+      // コメントをFirestoreへ登録
+      db.collection("posts").add({
+        restaurant: this.restaurant,
+        menu: this.menu,
+        detail: this.detail,
+        input_image: this.input_image,
+        sauna: this.sauna,
+      });
       router.push("/postDone");
     },
     inputFileReset() {

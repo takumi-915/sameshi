@@ -74,7 +74,7 @@
                   class="button_link"
                   color="#EF5350"
                   style="color: white; margin-top: 2%"
-                  @click="deletePost"
+                  @click="deletePost(post.id)"
                   >削除する</v-btn
                 >
               </v-card-text>
@@ -88,6 +88,19 @@
 
 <script>
 import axios from "axios";
+import { db } from "../firebase/firebase";
+
+// export default {
+//   name: "Main",
+//   data: () => ({
+//     posts: [],
+//   }),
+//   firestore() {
+//     return {
+//       // firestoreのcommentsコレクションを参照
+//       posts: db.collection("posts").orderBy("createdAt"),
+//     };
+//   },
 
 export default {
   data() {
@@ -106,10 +119,8 @@ export default {
   //   },
   // },
   methods: {
-    deletePost() {
-      axios.delete("/posts/{postsID}").then(() => {
-        console.log("Document successfully deleted!");
-      });
+    deletePost(id) {
+      db.collection("posts").doc(id).delete();
     },
   },
   created() {
