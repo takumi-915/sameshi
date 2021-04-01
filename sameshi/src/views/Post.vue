@@ -6,7 +6,8 @@
         <v-col cols="7" class="contents">
           <form>
             <v-text-field v-model="restaurant" label="店名"></v-text-field>
-            <v-text-field v-model="menu" label="メニュー"></v-text-field>
+            <v-text-field v-model="menu" label="メニュー名"></v-text-field>
+            <v-text-field v-model="price" label="価格"></v-text-field>
             <v-textarea
               v-model="detail"
               label="詳細(感想や価格など)"
@@ -126,8 +127,9 @@ export default {
       db.collection("posts").add({
         restaurant: this.restaurant,
         menu: this.menu,
+        price: this.price,
         detail: this.detail,
-        input_image: this.input_image,
+        // input_image: this.input_image,
         sauna: this.sauna,
       });
       router.push("/postDone");

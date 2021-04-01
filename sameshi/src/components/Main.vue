@@ -58,13 +58,13 @@
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
-            <v-btn icon @click="show = !show">
+            <!-- <v-btn icon @click="show = !show">
               <v-icon>{{
                 show ? "mdi-chevron-up" : "mdi-chevron-down"
               }}</v-icon>
-            </v-btn>
+            </v-btn> -->
           </v-card-actions>
-          <v-expand-transition>
+          <!-- <v-expand-transition>
             <div v-show="show">
               <v-divider></v-divider>
               <v-card-text>
@@ -79,7 +79,7 @@
                 >
               </v-card-text>
             </div>
-          </v-expand-transition>
+          </v-expand-transition> -->
         </v-card>
       </v-col>
     </v-row>
@@ -88,7 +88,7 @@
 
 <script>
 import axios from "axios";
-import { db } from "../firebase/firebase";
+// import { db } from "../firebase/firebase";
 
 // export default {
 //   name: "Main",
@@ -119,8 +119,10 @@ export default {
   //   },
   // },
   methods: {
-    deletePost(id) {
-      db.collection("posts").doc(id).delete();
+    deletePost() {
+      axios.delete("/posts/{postsID}").then(() => {
+        console.log("Document successfully deleted!");
+      });
     },
   },
   created() {
