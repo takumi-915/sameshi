@@ -12,6 +12,22 @@
               v-model="detail"
               label="詳細(感想や価格など)"
             ></v-textarea>
+            <span style="color: rgba(0, 0, 0, 0.6)"> 評価 </span>
+            <div class="rating">
+              <v-rating
+                background-color="orange lighten-1"
+                color="orange"
+                :hover="true"
+                :half-increments="true"
+                half-icon="$ratingHalf"
+                full-icon="$ratingFull"
+                large
+                v-model="satisfaction"
+              ></v-rating>
+              <span class="ml-5 font-weight-bold" style="margin-top: 15px">
+                {{ satisfaction }}
+              </span>
+            </div>
             <img
               v-if="uploadImageUrl"
               :src="this.uploadImageUrl"
@@ -58,7 +74,7 @@ export default {
       uploadImageUrl: "",
       errorMessage: "",
       reset: true,
-
+      satisfaction: 3,
       // post: {},
     };
   },
@@ -129,6 +145,7 @@ export default {
         menu: this.menu,
         price: this.price,
         detail: this.detail,
+        satisfaction: this.satisfaction,
         // input_image: this.input_image,
         sauna: this.sauna,
       });
@@ -171,5 +188,8 @@ export default {
   width: 100%;
   height: 300px;
   object-fit: scale-down;
+}
+.rating {
+  display: flex;
 }
 </style>
