@@ -7,11 +7,7 @@
           <form>
             <v-text-field v-model="restaurant" label="店名"></v-text-field>
             <v-text-field v-model="menu" label="メニュー名"></v-text-field>
-            <v-text-field v-model="price" label="価格"></v-text-field>
-            <v-textarea
-              v-model="detail"
-              label="詳細(感想や価格など)"
-            ></v-textarea>
+            <v-text-field v-model="price" label="価格（税込み）"></v-text-field>
             <span style="color: rgba(0, 0, 0, 0.6)"> 評価 </span>
             <div class="rating">
               <v-rating
@@ -28,13 +24,14 @@
                 {{ satisfaction }}
               </span>
             </div>
+            <v-textarea v-model="detail" label="感想"></v-textarea>
             <img
               v-if="uploadImageUrl"
               :src="this.uploadImageUrl"
               class="imageFile"
             />
             <v-file-input
-              v-model="input_image"
+              v-model="image"
               type="file"
               accept="image/*"
               show-size
@@ -93,7 +90,7 @@ export default {
           .ref(file.name)
           .getDownloadURL()
           .then((url) => {
-            this.post.image = url;
+            this.image = url;
           })
           .catch((err) => {
             this.errorMessage = err;
@@ -140,15 +137,20 @@ export default {
       //     console.log(response);
       //   });
       // コメントをFirestoreへ登録
-      db.collection("posts").add({
-        restaurant: this.restaurant,
-        menu: this.menu,
-        price: this.price,
-        detail: this.detail,
-        satisfaction: this.satisfaction,
-        // input_image: this.input_image,
-        sauna: this.sauna,
-      });
+      db.collection("posts")
+        .add({
+          restaurant: this.restaurant,
+          menu: this.menu,
+          price: this.price,
+          detail: this.detail,
+          satisfaction: this.satisfaction,
+          image: this.image,
+          sauna: this.sauna,
+        })
+        .then(() => {
+          this.image = "";
+          this.inputFileReset();
+        });
       router.push("/postDone");
     },
     inputFileReset() {
