@@ -28,6 +28,13 @@
           <v-card-subtitle>{{
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
+          <v-btn
+            class="button_link"
+            color="#EF5350"
+            style="color: white; margin: 2% 0 0 4%"
+            @click="deletePost(post.id)"
+            >削除する</v-btn
+          >
           <v-card-actions>
             <v-row justify="space-around" style="margin-right: 44%">
               <v-col cols="auto">
@@ -88,7 +95,7 @@
 
 <script>
 import axios from "axios";
-// import { db } from "../firebase/firebase";
+import { db } from "../firebase/firebase";
 
 // export default {
 //   name: "Main",
@@ -119,10 +126,16 @@ export default {
   //   },
   // },
   methods: {
-    deletePost() {
-      axios.delete("/posts/{postsID}").then(() => {
-        console.log("Document successfully deleted!");
-      });
+    // deletePost() {
+    //   axios.delete("/posts/{postsID}").then(() => {
+    //     console.log("Document successfully deleted!");
+    //   });
+    // },
+    deletePost(id) {
+      if (!confirm("コメントを削除してよろしいですか？")) {
+        return;
+      }
+      db.collection("posts").doc(id).delete();
     },
   },
   created() {
