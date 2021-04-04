@@ -14,7 +14,7 @@
     <v-row style="height: auto" align-content="center" class="contents">
       <v-col
         cols="4"
-        v-for="(post, index) in posts"
+        v-for="(post, index) in displayPosts"
         :key="post.id"
         class="card"
         :id="'id-' + index"
@@ -90,6 +90,11 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-pagination
+      v-model="page"
+      :length="length"
+      @input="pageChange"
+    ></v-pagination>
   </v-app>
 </template>
 
@@ -112,12 +117,12 @@ import { db } from "../firebase/firebase";
 export default {
   data() {
     return {
-      restaurant: [],
-      menu: [],
-      detail: [],
-      sauna: [],
       posts: [],
       show: false,
+      page: 1,
+      displayPosts: [],
+      pageSize: 9,
+      length: 0,
     };
   },
   // computed: {
@@ -137,11 +142,19 @@ export default {
       }
       db.collection("posts").doc(id).delete();
     },
+    pageChange: function (pageNumber) {
+      this.displayPosts = this.posts.slice(
+        this.pageSize * (pageNumber - 1),
+        this.pageSize * pageNumber
+      );
+    },
   },
   created() {
     // this.posts = this.$store.state.posts;
     axios.get("/posts").then((response) => {
       this.posts = response.data.documents;
+      this.displayPosts = this.posts.slice(0, this.pageSize);
+      this.length = Math.ceil(this.posts.length / this.pageSize);
     });
   },
 };
