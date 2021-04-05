@@ -95,12 +95,16 @@
       :length="length"
       @input="pageChange"
     ></v-pagination>
+    <div>
+      <google-map />
+    </div>
   </v-app>
 </template>
 
 <script>
 import axios from "axios";
 import { db } from "../firebase/firebase";
+import GoogleMap from "./GoogleMap.vue";
 
 // export default {
 //   name: "Main",
@@ -124,6 +128,9 @@ export default {
       pageSize: 9,
       length: 0,
     };
+  },
+  components: {
+    GoogleMap,
   },
   // computed: {
   //   idToken() {
