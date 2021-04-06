@@ -54,7 +54,37 @@
                         post.fields.restaurant.stringValue
                       }}</v-toolbar>
                       <v-card-text>
-                        <div class="text-h2 pa-12">ここに地図を埋め込む</div>
+                        <h4 class="detail">店舗基本情報</h4>
+                        <table
+                          class="c-table c-table--form rstinfo-table__table"
+                        >
+                          <tbody>
+                            <tr>
+                              <th>店名</th>
+                              <td>〇〇店</td>
+                            </tr>
+                            <tr>
+                              <th>メニュー名</th>
+                              <td>〇〇定食</td>
+                            </tr>
+                            <tr>
+                              <th>価格（税込み）</th>
+                              <td>〇〇円</td>
+                            </tr>
+                            <tr>
+                              <th>評価</th>
+                              <td>☆〇点</td>
+                            </tr>
+                            <tr>
+                              <th>感想</th>
+                              <td>美味しかった</td>
+                            </tr>
+                            <tr>
+                              <th>近隣サウナ</th>
+                              <td>北欧</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </v-card-text>
                       <v-card-actions class="justify-end">
                         <v-btn text @click="dialog.value = false">閉じる</v-btn>
@@ -200,5 +230,57 @@ export default {
 }
 .mx-auto {
   margin: 10% 0;
+}
+.detail {
+  margin: 40px 0 30px 0;
+  padding-left: 10px;
+  border-left: solid 3px #fa0;
+  color: #13131e;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.c-table.c-table--form {
+  border-collapse: separate;
+  border-top: 1px solid #d6ceb4;
+}
+.c-table.c-table--form tbody tr th {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #d6ceb4;
+  background-color: #faf8f5;
+  font-size: 13px;
+  text-align: left;
+}
+.rstinfo-table__table {
+  margin-bottom: 25px;
+  line-height: 0.3;
+  font-size: 1rem;
+}
+.rstinfo-table__table > tbody > tr > td {
+  padding: 15px 0 15px 20px;
+  vertical-align: middle;
+}
+.rstinfo-table__table > tbody > tr > th {
+  padding: 20px;
+  color: #463f2d;
+  vertical-align: top;
+  width: 14rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.c-table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #fff;
+}
+table {
+  border-spacing: 0;
+  border-collapse: separate;
+  word-break: break-all;
+  empty-cells: show;
+}
+.c-table tbody tr td {
+  border-bottom: 1px solid #d6ceb4;
+  vertical-align: inherit;
+  padding: 1rem;
 }
 </style>
