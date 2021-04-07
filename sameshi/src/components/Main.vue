@@ -31,76 +31,99 @@
           <v-btn
             class="button_link"
             color="#EF5350"
-            style="color: white; margin: 2% 0 0 4%"
+            style="color: white; margin: 2% 0 0 2%"
             @click="deletePost(post.id)"
             >削除する</v-btn
           >
-          <v-card-actions>
-            <v-row justify="space-around" style="margin-right: 44%">
-              <v-col cols="auto">
-                <v-dialog transition="dialog-top-transition" max-width="600">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      color="#90A4AE"
-                      v-bind="attrs"
-                      v-on="on"
-                      style="color: #ffffff"
-                      >地図を見る</v-btn
-                    >
-                  </template>
-                  <template v-slot:default="dialog">
-                    <v-card>
-                      <v-toolbar color="#ff8f00" dark>{{
-                        post.fields.restaurant.stringValue
-                      }}</v-toolbar>
-                      <v-card-text>
-                        <h4 class="detail">店舗基本情報</h4>
-                        <table
-                          class="c-table c-table--form rstinfo-table__table"
-                        >
-                          <tbody>
-                            <tr>
-                              <th>店名</th>
-                              <td>〇〇店</td>
-                            </tr>
-                            <tr>
-                              <th>メニュー名</th>
-                              <td>〇〇定食</td>
-                            </tr>
-                            <tr>
-                              <th>価格（税込み）</th>
-                              <td>〇〇円</td>
-                            </tr>
-                            <tr>
-                              <th>評価</th>
-                              <td>☆〇点</td>
-                            </tr>
-                            <tr>
-                              <th>感想</th>
-                              <td>美味しかった</td>
-                            </tr>
-                            <tr>
-                              <th>近隣サウナ</th>
-                              <td>北欧</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </v-card-text>
-                      <v-card-actions class="justify-end">
-                        <v-btn text @click="dialog.value = false">閉じる</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </template>
-                </v-dialog>
-              </v-col>
-            </v-row>
-            <v-spacer></v-spacer>
-            <!-- <v-btn icon @click="show = !show">
-              <v-icon>{{
-                show ? "mdi-chevron-up" : "mdi-chevron-down"
-              }}</v-icon>
-            </v-btn> -->
-          </v-card-actions>
+          <div style="display: flex; justify-content: space-between">
+            <v-card-actions>
+              <v-row justify="space-around">
+                <v-col cols="auto">
+                  <v-dialog transition="dialog-top-transition" max-width="600">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        color="#90A4AE"
+                        v-bind="attrs"
+                        v-on="on"
+                        style="color: #ffffff"
+                        >詳しい情報を見る</v-btn
+                      >
+                    </template>
+                    <template v-slot:default="dialog">
+                      <v-card>
+                        <v-toolbar color="#ff8f00" dark>{{
+                          post.fields.restaurant.stringValue
+                        }}</v-toolbar>
+                        <v-card-text>
+                          <h4 class="detail">店舗基本情報</h4>
+                          <table
+                            class="c-table c-table--form rstinfo-table__table"
+                          >
+                            <tbody>
+                              <tr>
+                                <th>店名</th>
+                                <td>〇〇店</td>
+                              </tr>
+                              <tr>
+                                <th>メニュー名</th>
+                                <td>〇〇定食</td>
+                              </tr>
+                              <tr>
+                                <th>価格（税込み）</th>
+                                <td>〇〇円</td>
+                              </tr>
+                              <tr>
+                                <th>評価</th>
+                                <td>☆〇点</td>
+                              </tr>
+                              <tr>
+                                <th>感想</th>
+                                <td>美味しかった</td>
+                              </tr>
+                              <tr>
+                                <th>近隣サウナ</th>
+                                <td>北欧</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </v-card-text>
+                        <v-card-actions class="justify-end">
+                          <v-btn text @click="dialog.value = false"
+                            >閉じる</v-btn
+                          >
+                        </v-card-actions>
+                      </v-card>
+                    </template>
+                  </v-dialog>
+                </v-col>
+              </v-row>
+              <v-spacer></v-spacer>
+              <!-- <v-btn icon @click="show = !show">
+                <v-icon>{{
+                  show ? "mdi-chevron-up" : "mdi-chevron-down"
+                }}</v-icon>
+              </v-btn> -->
+            </v-card-actions>
+            <div class="btn_area">
+              <div style="margin-right: 13px">
+                <button
+                  v-if="!likedFlg"
+                  @click="addLikeUsr()"
+                  class="btn like-btn"
+                >
+                  <i class="fa fa-fw fa-thumbs-up"></i>
+                </button>
+                <button
+                  v-if="likedFlg"
+                  @click="delLikeUsr()"
+                  class="btn like-btn"
+                >
+                  <i class="fa fa-fw fa-check"></i>
+                </button>
+                <span class="like-count">{{ likeSum }}いいね</span>
+              </div>
+            </div>
+          </div>
           <!-- <v-expand-transition>
             <div v-show="show">
               <v-divider></v-divider>
@@ -123,6 +146,7 @@
     <v-pagination
       v-model="page"
       :length="length"
+      style="margin-bottom: 4%"
       @input="pageChange"
     ></v-pagination>
     <div>
@@ -223,7 +247,7 @@ export default {
   color: #ffffff;
 }
 .contents {
-  margin: 5% 2% 10% 2%;
+  margin: 5% 2% 3% 2%;
 }
 .card {
   width: 37%;
@@ -282,5 +306,30 @@ table {
   border-bottom: 1px solid #d6ceb4;
   vertical-align: inherit;
   padding: 1rem;
+}
+.container_area {
+  width: 300px;
+  margin-top: 50px;
+  padding: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.btn_area {
+  margin-top: 3%;
+}
+.like-btn {
+  font-size: 22px;
+  color: #55c500;
+  background-color: #fff;
+  border: 2px solid #55c500;
+  border-radius: 90%;
+  outline: none;
+}
+.like-count {
+  color: #55c500;
+}
+.border-double {
+  border: double 10px dimgray;
 }
 </style>

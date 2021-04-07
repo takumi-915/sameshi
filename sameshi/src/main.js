@@ -5,6 +5,9 @@ import router from './router';
 import axios from 'axios';
 import store from './store/store';
 import firebase from "./firebase/firebase"
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
 
 Vue.config.productionTip = false
 

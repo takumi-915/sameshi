@@ -31,7 +31,7 @@
         </v-btn>
       </nav>
       <nav class="headerLink-right" v-if="isAutenticated">
-        <nav>ここにユーザーネームを入れる</nav>
+        <nav>{{ userName }}</nav>
         <nav class="headerLink-right-text" @click="logout">ログアウト</nav>
       </nav>
       <nav class="headerLink-right" v-if="$store.state.googleLogin_user">

@@ -1,16 +1,17 @@
 <template>
   <v-app>
     <div>
-      <h1>Google Map</h1>
+      <h1 style="text-align: center">気になったお店の場所を検索！</h1>
       <v-text-field
         v-model="searchForm"
         solo
         label="店名を入力"
         prepend-inner-icon="mdi-magnify"
+        style="padding: 10%"
         class="py-2"
+        @keydown.enter="search"
       />
-      <v-btn color="#90A4AE" style="color: #ffffff" @click="search">検索</v-btn>
-      <div ref="map" style="height: 500px; width: 800px"></div>
+      <div ref="map" class="map"></div>
     </div>
   </v-app>
 </template>
@@ -61,3 +62,11 @@ export default {
   // },
 };
 </script>
+
+<style scoped>
+.map {
+  height: 500px;
+  width: 80%;
+  margin: auto;
+}
+</style>
