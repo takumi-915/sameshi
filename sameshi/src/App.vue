@@ -86,10 +86,6 @@ export default {
 
 <style scoped>
 header {
-  /* width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between; */
   background-color: #ff8f00;
 }
 .header-menu {

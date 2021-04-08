@@ -1,9 +1,9 @@
 <template>
   <v-app class="main" style="background-color: rgb(251, 251, 251)">
     <h1 class="mainIntroduction">あなたの「サ飯」教えてください</h1>
-    <h3 class="introduction">
-      サ飯とは？<br />ー サウナで「ととのった」後に食べるご飯 ー
-    </h3>
+    <h2 class="introduction">
+      サ飯とは？<br />〜 サウナで「ととのった」後に食べるご飯 〜
+    </h2>
     <div class="button">
       <router-link to="/post/:post_id?" class="postLink"
         ><v-btn depressed elevation="6" large color="#EF6C00" class="postButton"
@@ -21,7 +21,7 @@
       >
         <v-card class="mx-auto" max-width="344">
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            src="https://photock.jp/photo/middle/photo0000-2657.jpg"
             height="200px"
           ></v-img>
           <v-card-title>{{ post.fields.menu.stringValue }}</v-card-title>
@@ -29,13 +29,14 @@
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
           <v-btn
+            v-if="isAutenticated"
             class="button_link"
             color="#EF5350"
-            style="color: white; margin: 2% 0 0 2%"
+            style="color: white; margin: 2% 0 0 6%"
             @click="deletePost(post.id)"
             >削除する</v-btn
           >
-          <div style="display: flex; justify-content: space-between">
+          <v-container style="display: flex; justify-content: space-between">
             <v-card-actions>
               <v-row justify="space-around">
                 <v-col cols="auto">
@@ -105,7 +106,7 @@
               </v-btn> -->
             </v-card-actions>
             <div class="btn_area">
-              <div style="margin-right: 13px">
+              <div>
                 <button
                   v-if="!likedFlg"
                   @click="addLikeUsr()"
@@ -123,7 +124,7 @@
                 <span class="like-count">{{ likeSum }}いいね</span>
               </div>
             </div>
-          </div>
+          </v-container>
           <!-- <v-expand-transition>
             <div v-show="show">
               <v-divider></v-divider>
@@ -157,8 +158,9 @@
 
 <script>
 import axios from "axios";
-import { db } from "../firebase/firebase";
+import firebase from "../firebase/firebase";
 import GoogleMap from "./GoogleMap.vue";
+import { mapGetters } from "vuex";
 
 // export default {
 //   name: "Main",
@@ -171,7 +173,7 @@ import GoogleMap from "./GoogleMap.vue";
 //       posts: db.collection("posts").orderBy("createdAt"),
 //     };
 //   },
-
+var db = firebase.firestore();
 export default {
   data() {
     return {
@@ -181,7 +183,14 @@ export default {
       displayPosts: [],
       pageSize: 9,
       length: 0,
+      likeSum: 0,
     };
+  },
+  computed: {
+    isAutenticated() {
+      return this.$store.getters.idToken !== null;
+    },
+    ...mapGetters(["userName"]),
   },
   components: {
     GoogleMap,
@@ -225,10 +234,12 @@ export default {
 .mainIntroduction {
   text-align: center;
   margin-top: 5%;
+  font-family: "Fraunces", serif;
 }
 .introduction {
   text-align: center;
   margin: 3% 0;
+  font-family: "Fraunces", serif;
 }
 .button {
   width: 100%;
@@ -319,7 +330,7 @@ table {
   margin-top: 3%;
 }
 .like-btn {
-  font-size: 22px;
+  font-size: 20px;
   color: #55c500;
   background-color: #fff;
   border: 2px solid #55c500;
@@ -328,6 +339,7 @@ table {
 }
 .like-count {
   color: #55c500;
+  margin-left: 5px;
 }
 .border-double {
   border: double 10px dimgray;

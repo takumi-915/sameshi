@@ -7,7 +7,7 @@
         solo
         label="店名を入力"
         prepend-inner-icon="mdi-magnify"
-        style="padding: 10%"
+        style="padding: 28%"
         class="py-2"
         @keydown.enter="search"
       />
@@ -65,7 +65,7 @@ export default {
 
 <style scoped>
 .map {
-  height: 500px;
+  height: 700px;
   width: 80%;
   margin: auto;
 }
