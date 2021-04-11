@@ -15,25 +15,33 @@
       <v-col
         cols="4"
         v-for="(post, index) in displayPosts"
-        :key="post.id"
+        :key="post.name"
         class="card"
         :id="'id-' + index"
       >
         <v-card class="mx-auto" max-width="344">
-          <v-img
-            src="https://photock.jp/photo/middle/photo0000-2657.jpg"
+          <!-- <v-img
+            src="https://firebasestorage.googleapis.com/v0/b/sameshi-b785e.appspot.com/o/github%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF-Page-2.jpg?alt=media&token=3ae6bf2a-c51f-4288-856e-086f536ba914"
             height="200px"
-          ></v-img>
+          ></v-img> -->
+          <v-img :src="post.fields.image.stringValue" height="200px"></v-img>
           <v-card-title>{{ post.fields.menu.stringValue }}</v-card-title>
           <v-card-subtitle>{{
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
-          <v-btn
+          <!-- <v-btn
             v-if="isAutenticated"
             class="button_link"
             color="#EF5350"
             style="color: white; margin: 2% 0 0 6%"
             @click="deletePost(post.id)"
+            >削除する</v-btn
+          > -->
+          <v-btn
+            class="button_link"
+            color="#EF5350"
+            style="color: white; margin: 2% 0 0 6%"
+            @click="deletePost(post.name)"
             >削除する</v-btn
           >
           <v-container style="display: flex; justify-content: space-between">
@@ -206,8 +214,11 @@ export default {
     //     console.log("Document successfully deleted!");
     //   });
     // },
-    deletePost(id) {
-      if (!confirm("コメントを削除してよろしいですか？")) {
+    deletePost(name) {
+      console.log(name);
+      const array = name.split("/");
+      const id = array[6];
+      if (!confirm(id + "を削除してよろしいですか？")) {
         return;
       }
       db.collection("posts").doc(id).delete();
