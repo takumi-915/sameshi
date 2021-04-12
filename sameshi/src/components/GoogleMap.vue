@@ -13,6 +13,11 @@
       />
       <div ref="map" class="map"></div>
     </div>
+    <footer>
+      <v-card-title class="text-center pa-130">
+        <h5 class="footerTitle">© 2021 サ飯Log</h5>
+      </v-card-title>
+    </footer>
   </v-app>
 </template>
 
@@ -56,7 +61,7 @@ export default {
               map: this.map,
               position: results[0].geometry.location,
             });
-            this.map.setZoom(6);
+            this.map.setZoom(12);
           }
         }
       );
@@ -70,5 +75,17 @@ export default {
   height: 700px;
   width: 80%;
   margin: auto;
+  margin-bottom: 100px;
+}
+footer {
+  height: 70px;
+  background-color: #ef6c00;
+}
+.footerTitle {
+  width: 100%;
+  text-align: left;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Fraunces", serif;
 }
 </style>

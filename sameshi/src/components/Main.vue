@@ -209,16 +209,11 @@ export default {
   //   },
   // },
   methods: {
-    // deletePost() {
-    //   axios.delete("/posts/{postsID}").then(() => {
-    //     console.log("Document successfully deleted!");
-    //   });
-    // },
     deletePost(name) {
       console.log(name);
       const array = name.split("/");
       const id = array[6];
-      if (!confirm(id + "を削除してよろしいですか？")) {
+      if (!confirm("こちらの投稿を削除してよろしいですか？")) {
         return;
       }
       db.collection("posts").doc(id).delete();
@@ -242,6 +237,9 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  height: 1200px;
+}
 .mainIntroduction {
   text-align: center;
   margin-top: 5%;
