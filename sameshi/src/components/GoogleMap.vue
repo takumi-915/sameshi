@@ -61,7 +61,7 @@ export default {
               map: this.map,
               position: results[0].geometry.location,
             });
-            this.map.setZoom(12);
+            this.map.setZoom(14);
           }
         }
       );

@@ -1,5 +1,5 @@
 <template>
-  <v-app class="body">
+  <v-app class="body" style="padding-bottom: 100px">
     <div class="main">
       <h2 class="title">あなたのサ飯を教えてください</h2>
       <v-row>
@@ -172,9 +172,10 @@ export default {
   text-align: center;
   margin: 5% 0;
   font-weight: bold;
+  font-family: "Fraunces", serif !important;
 }
 .body {
-  background-color: #eceff1;
+  background-color: rgb(251, 251, 251);
 }
 .contents {
   margin: 0 auto;

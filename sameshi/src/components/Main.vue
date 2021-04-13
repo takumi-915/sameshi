@@ -2,7 +2,7 @@
   <v-app class="main" style="background-color: rgb(251, 251, 251)">
     <h1 class="mainIntroduction">あなたの「サ飯」教えてください</h1>
     <h2 class="introduction">
-      サ飯とは？<br />〜 サウナで「ととのった」後に食べるご飯 〜
+      サ飯とは<br />〜 サウナで「ととのった」後に食べるご飯 〜
     </h2>
     <div class="button">
       <router-link to="/post/:post_id?" class="postLink"
@@ -71,27 +71,33 @@
                             <tbody>
                               <tr>
                                 <th>店名</th>
-                                <td>〇〇店</td>
+                                <td>
+                                  {{ post.fields.restaurant.stringValue }}
+                                </td>
                               </tr>
                               <tr>
                                 <th>メニュー名</th>
-                                <td>〇〇定食</td>
+                                <td>{{ post.fields.menu.stringValue }}</td>
                               </tr>
                               <tr>
                                 <th>価格（税込み）</th>
-                                <td>〇〇円</td>
+                                <td>{{ post.fields.price.stringValue }}円</td>
                               </tr>
                               <tr>
                                 <th>評価</th>
-                                <td>☆〇点</td>
+                                <td>
+                                  ⭐️
+                                  {{ post.fields.satisfaction.integerValue }}
+                                  {{ post.fields.satisfaction.doubleValue }}点
+                                </td>
                               </tr>
                               <tr>
                                 <th>感想</th>
-                                <td>美味しかった</td>
+                                <td>{{ post.fields.detail.stringValue }}</td>
                               </tr>
                               <tr>
                                 <th>近隣サウナ</th>
-                                <td>北欧</td>
+                                <td>{{ post.fields.sauna.stringValue }}</td>
                               </tr>
                             </tbody>
                           </table>
@@ -229,6 +235,7 @@ export default {
     // this.posts = this.$store.state.posts;
     axios.get("/posts").then((response) => {
       this.posts = response.data.documents;
+      console.log(response.data.documents);
       this.displayPosts = this.posts.slice(0, this.pageSize);
       this.length = Math.ceil(this.posts.length / this.pageSize);
     });
@@ -244,6 +251,17 @@ export default {
   text-align: center;
   margin-top: 5%;
   font-family: "Fraunces", serif;
+  animation: zoomIn 4s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 .introduction {
   text-align: center;
