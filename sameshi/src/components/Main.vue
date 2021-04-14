@@ -20,23 +20,11 @@
         :id="'id-' + index"
       >
         <v-card class="mx-auto" max-width="344">
-          <!-- <v-img
-            src="https://firebasestorage.googleapis.com/v0/b/sameshi-b785e.appspot.com/o/github%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF-Page-2.jpg?alt=media&token=3ae6bf2a-c51f-4288-856e-086f536ba914"
-            height="200px"
-          ></v-img> -->
           <v-img :src="post.fields.image.stringValue" height="200px"></v-img>
           <v-card-title>{{ post.fields.menu.stringValue }}</v-card-title>
           <v-card-subtitle>{{
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
-          <!-- <v-btn
-            v-if="isAutenticated"
-            class="button_link"
-            color="#EF5350"
-            style="color: white; margin: 2% 0 0 6%"
-            @click="deletePost(post.id)"
-            >削除する</v-btn
-          > -->
           <v-btn
             v-if="isAutenticated && !$store.state.googleLogin_user"
             class="button_link"
@@ -140,22 +128,6 @@
               </div>
             </div>
           </v-container>
-          <!-- <v-expand-transition>
-            <div v-show="show">
-              <v-divider></v-divider>
-              <v-card-text>
-                詳細：{{ post.fields.detail.stringValue }}<br />
-                サウナ：{{ post.fields.sauna.stringValue }}<br />
-                <v-btn
-                  class="button_link"
-                  color="#EF5350"
-                  style="color: white; margin-top: 2%"
-                  @click="deletePost(post.id)"
-                  >削除する</v-btn
-                >
-              </v-card-text>
-            </div>
-          </v-expand-transition> -->
         </v-card>
       </v-col>
     </v-row>
