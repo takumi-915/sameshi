@@ -38,6 +38,7 @@
             >削除する</v-btn
           > -->
           <v-btn
+            v-if="isAutenticated && !$store.state.googleLogin_user"
             class="button_link"
             color="#EF5350"
             style="color: white; margin: 2% 0 0 6%"
@@ -205,15 +206,13 @@ export default {
       return this.$store.getters.idToken !== null;
     },
     ...mapGetters(["userName"]),
+    // idToken() {
+    //   return this.$store.getters.idToken;
+    // },
   },
   components: {
     GoogleMap,
   },
-  // computed: {
-  //   idToken() {
-  //     return this.$store.getters.idToken;
-  //   },
-  // },
   methods: {
     deletePost(name) {
       console.log(name);
@@ -245,7 +244,7 @@ export default {
 
 <style scoped>
 .main {
-  height: 1200px;
+  height: auto;
 }
 .mainIntroduction {
   text-align: center;

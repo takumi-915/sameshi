@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: auto">
     <v-app-bar app style="background-color: #ef6c00">
       <v-toolbar-title class="title">
         <router-link to="/" class="headerLink-left-text">サ飯Log</router-link>

@@ -29,13 +29,13 @@ export default new Router({
     }
   }, {
     path: '/post/:post_id?', component: Post
-    // , beforeEnter(to, from, next) {
-    //   if (store.getters.idToken) {
-    //     next();
-    //   } else {
-    //     next('/login');
-    //   }
-    // }
+    , beforeEnter(to, from, next) {
+      if (store.getters.idToken) {
+        next();
+      } else {
+        next('/login');
+      }
+    }
   },
   { path: '/postDone', component: postDone },]
 });

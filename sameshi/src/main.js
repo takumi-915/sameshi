@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = "https://firestore.googleapis.com/v1/projects/sameshi-b785e/databases/(default)/documents";
 
+store.dispatch('autoLogin');
 new Vue({
   vuetify,
   router,
