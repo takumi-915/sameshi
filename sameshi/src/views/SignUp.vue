@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background-color: #ddd">
+  <v-app style="background-color: #eee">
     <div style="margin-top: 10%">
       <v-card
         :tile="$vuetify.breakpoint.sm || $vuetify.breakpoint.xs"

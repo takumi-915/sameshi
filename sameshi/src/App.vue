@@ -12,7 +12,9 @@
           </router-link>
         </v-tab>
         <v-tab class="header-menu-list">
-          <span style="color: #ffffff">サ飯とは</span>
+          <router-link to="/introduction" class="headerLink-left-text">
+            サ飯とは</router-link
+          >
         </v-tab>
       </v-tabs>
       <nav

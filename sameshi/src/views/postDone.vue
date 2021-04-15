@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background-color: #ddd">
+  <v-app style="background-color: #eee">
     <div style="margin-top: 10%">
       <v-card
         :tile="$vuetify.breakpoint.sm || $vuetify.breakpoint.xs"
@@ -10,9 +10,15 @@
         <v-card-title class="text-center pa-10">
           <h3 class="Done">投稿が完了しました！</h3>
         </v-card-title>
+        <v-img
+          src="https://1.bp.blogspot.com/-f3RpEHd25R4/X79cj7SEo_I/AAAAAAABce8/tPhWRoxKbOAvUNRcwqxK1YmVyKrKCNapwCNcBGAsYHQ/s400/ofuro_sauna_gaikiyoku.png"
+          height="200px"
+          width="200px"
+          style="margin: auto"
+        ></v-img>
         <v-card-text>
           <router-link to="/"
-            ><p class="clickHome">クリックしてホームに戻る</p></router-link
+            ><p class="clickHome">ホームに戻る</p></router-link
           >
         </v-card-text>
         <div></div>

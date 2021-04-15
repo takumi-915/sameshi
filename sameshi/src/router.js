@@ -6,6 +6,7 @@ import SignUp from "./views/SignUp.vue";
 import Post from "./views/Post.vue";
 import store from './store/store';
 import postDone from './views/postDone.vue'
+import introduction from "./views/introduction.vue";
 
 Vue.use(Router);
 
@@ -37,5 +38,6 @@ export default new Router({
       }
     }
   },
-  { path: '/postDone', component: postDone },]
+  { path: '/postDone', component: postDone },
+  { path: '/introduction', component: introduction },]
 });

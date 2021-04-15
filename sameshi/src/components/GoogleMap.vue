@@ -1,7 +1,9 @@
 <template>
   <v-app style="background-color: rgb(251, 251, 251)">
     <div>
-      <h1 style="text-align: center">気になったお店の場所を検索！</h1>
+      <h1 style="text-align: center; margin-bottom: 1.5%">
+        気になったお店の場所を検索！
+      </h1>
       <v-text-field
         v-model="address"
         solo

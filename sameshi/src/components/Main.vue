@@ -1,9 +1,6 @@
 <template>
   <v-app class="main" style="background-color: rgb(251, 251, 251)">
     <h1 class="mainIntroduction">あなたの「サ飯」教えてください</h1>
-    <h2 class="introduction">
-      サ飯とは<br />〜 サウナで「ととのった」後に食べるご飯 〜
-    </h2>
     <div class="button">
       <router-link to="/post/:post_id?" class="postLink"
         ><v-btn depressed elevation="6" large color="#EF6C00" class="postButton"
@@ -234,15 +231,10 @@ export default {
     transform: scale(1);
   }
 }
-.introduction {
-  text-align: center;
-  margin: 3% 0;
-  font-family: "Fraunces", serif;
-}
 .button {
   width: 100%;
   text-align: center;
-  padding: 2% 2% 0 2%;
+  padding: 6% 2% 0 2%;
 }
 .postButton {
   height: 57px !important;
