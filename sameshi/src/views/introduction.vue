@@ -1,6 +1,6 @@
 <template>
-  <v-app style="background-color: #eee; margin-bottom: 5%">
-    <div style="margin-top: 10%">
+  <v-app style="background-color: #eee">
+    <div style="margin: 10%">
       <v-card
         :tile="$vuetify.breakpoint.sm || $vuetify.breakpoint.xs"
         class="mx-auto fill-width"
@@ -30,13 +30,17 @@
           </p>
           <h3 class="detail">管理者がこのアプリを作ろうと思った理由</h3>
           <p style="margin-top: 36px; font-size: 16px">
+            理由は大きく2つあります。<br /><br />
+            ①<br />
             どこのサウナに行こうか迷った時、施設に関して共有するサイトは沢山あります。
             しかし、サ飯を共有サイトは見当たりませんでした。<br />
             サウナーにとっては、サウナに入って終わりではありません。<br />
             サ飯を食べるまでがルーティンの一貫なのです。<br />
             サ飯難民をサウナー同士で助け合う、そんなサイトがあればいいなと思い、作ろうと思いました。<br />
-            そして、昨今猛威を振るっている新型コロナウィルスの影響で多くの飲食店が苦境に立たされていると思います。<br />
-            そんな飲食店の手助けにもなれたらいいなと思っております。
+            <br />
+            ②<br />
+            昨今猛威を振るっている新型コロナウィルスの影響で多くの飲食店が苦境に立たされていると思います。<br />
+            そんな飲食店に少しでも貢献できたらという思いがあります。
           </p>
         </v-card-text>
         <v-card-text>

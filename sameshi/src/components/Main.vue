@@ -79,7 +79,9 @@
                               </tr>
                               <tr>
                                 <th>感想</th>
-                                <td>{{ post.fields.detail.stringValue }}</td>
+                                <td style="height: auto">
+                                  {{ post.fields.detail.stringValue }}
+                                </td>
                               </tr>
                               <tr>
                                 <th>近隣サウナ</th>

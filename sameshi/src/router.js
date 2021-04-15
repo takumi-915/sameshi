@@ -33,6 +33,8 @@ export default new Router({
     , beforeEnter(to, from, next) {
       if (store.getters.idToken) {
         next();
+      } else if (store.getters.uid) {
+        next();
       } else {
         next('/login');
       }
