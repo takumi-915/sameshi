@@ -7,9 +7,8 @@
         flat
         max-width="640"
       >
-        <h2 class="introduction">
-          サ飯とは<br />〜 サウナで「ととのった」後に食べるご飯 〜
-        </h2>
+        <h1 class="mainIntroduction">サ飯とは</h1>
+        <h2 class="subIntroduction">サウナで「ととのった」後に食べるご飯</h2>
         <v-img
           src="https://1.bp.blogspot.com/-f3RpEHd25R4/X79cj7SEo_I/AAAAAAABce8/tPhWRoxKbOAvUNRcwqxK1YmVyKrKCNapwCNcBGAsYHQ/s400/ofuro_sauna_gaikiyoku.png"
           height="200px"
@@ -17,7 +16,7 @@
           style="margin: auto"
         ></v-img>
         <v-card-text>
-          <h3 class="detail">なぜサウナ後はご飯を美味しく感じるのか？</h3>
+          <h3 class="detail">なぜサウナの後はご飯を美味しく感じるのか？</h3>
           <p style="margin: 36px 0; font-size: 16px">
             結論を言うと、サウナで汗をかくことで、「塩味・甘味・酸味」が敏感になるからです。<br />
             <a
@@ -28,7 +27,7 @@
             </a>
             のサイトに詳しくまとめられています。
           </p>
-          <h3 class="detail">管理者がこのアプリを作ろうと思った理由</h3>
+          <h3 class="detail">管理者がこのWEBサービスを作ろうと思った理由</h3>
           <p style="margin-top: 36px; font-size: 16px">
             理由は大きく2つあります。<br /><br />
             ①<br />
@@ -66,10 +65,19 @@
   width: 100%;
   text-align: center;
 }
-.introduction {
+.mainIntroduction,
+.subIntroduction {
   text-align: center;
-  margin: 3% 0;
-  font-family: "Fraunces", serif;
+  font-family: "Roboto", sans-serif;
+}
+.mainIntroduction {
+  margin-top: 5%;
+  font-size: 65px;
+  font-size: 50px;
+}
+.subIntroduction {
+  font-size: 20px;
+  margin-bottom: 5%;
 }
 .detail {
   font-size: 22px;

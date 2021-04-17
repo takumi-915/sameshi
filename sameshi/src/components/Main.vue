@@ -1,13 +1,7 @@
 <template>
   <v-app class="main" style="background-color: rgb(251, 251, 251)">
-    <h1 class="mainIntroduction">あなたの「サ飯」教えてください</h1>
-    <div class="button">
-      <router-link to="/post/:post_id?" class="postLink"
-        ><v-btn depressed elevation="6" large color="#EF6C00" class="postButton"
-          ><span class="btnText">投稿お願いします</span></v-btn
-        >
-      </router-link>
-    </div>
+    <h1 class="mainIntroduction">FOOD</h1>
+    <h2 class="subIntroduction">みんなの「サ飯」をご紹介</h2>
     <v-row style="height: auto" align-content="center" class="contents">
       <v-col
         cols="4"
@@ -133,9 +127,23 @@
     <v-pagination
       v-model="page"
       :length="length"
-      style="margin-bottom: 4%"
+      style="margin-bottom: 3%"
       @input="pageChange"
     ></v-pagination>
+    <div class="button">
+      <router-link to="/post/:post_id?" class="postLink"
+        ><v-btn
+          depressed
+          elevation="6"
+          height="80"
+          min-width="95"
+          color="#EF6C00"
+          outlined
+          class="postButton"
+          ><span class="btnText">投稿する</span></v-btn
+        >
+      </router-link>
+    </div>
     <div>
       <google-map />
     </div>
@@ -217,11 +225,19 @@ export default {
 .main {
   height: auto;
 }
-.mainIntroduction {
+.mainIntroduction,
+.subIntroduction {
   text-align: center;
-  margin-top: 5%;
   font-family: "Fraunces", serif;
   animation: zoomIn 4s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+.mainIntroduction {
+  margin-top: 5%;
+  font-size: 65px;
+}
+.subIntroduction {
+  font-size: 20px;
+  color: #708090;
 }
 @keyframes zoomIn {
   0% {
@@ -236,21 +252,25 @@ export default {
 .button {
   width: 100%;
   text-align: center;
-  padding: 6% 2% 0 2%;
+  padding: 0 2% 5%;
 }
 .postButton {
-  height: 57px !important;
+  height: 65px !important;
   font-size: 15px;
   width: 30%;
+  border-width: 3px;
+  box-shadow: none !important;
 }
 .postLink {
   text-decoration: none;
 }
 .btnText {
-  color: #ffffff;
+  color: #ef6c00;
+  font-weight: bold;
+  font-size: 20px;
 }
 .contents {
-  margin: 5% 2% 3% 2%;
+  margin: 2% 2% 0 2%;
 }
 .card {
   width: 37%;

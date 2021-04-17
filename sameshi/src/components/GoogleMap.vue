@@ -1,9 +1,8 @@
 <template>
   <v-app style="background-color: rgb(251, 251, 251)">
     <div>
-      <h1 style="text-align: center; margin-bottom: 1.5%">
-        気になったお店の場所を検索！
-      </h1>
+      <h1 class="mainIntroduction">PLACE</h1>
+      <h2 class="subIntroduction">気になったお店の場所を検索！</h2>
       <v-text-field
         v-model="address"
         solo
@@ -73,5 +72,30 @@ export default {
   width: 80%;
   margin: auto;
   margin-bottom: 100px;
+}
+.mainIntroduction,
+.subIntroduction {
+  text-align: center;
+  font-family: "Fraunces", serif;
+  animation: zoomIn 4s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+.mainIntroduction {
+  margin-top: 5%;
+  font-size: 65px;
+}
+.subIntroduction {
+  font-size: 20px;
+  color: #708090;
+  margin-bottom: 1.5rem;
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 </style>
