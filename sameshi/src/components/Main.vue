@@ -17,13 +17,13 @@
             post.fields.restaurant.stringValue
           }}</v-card-subtitle>
           <v-btn
-            v-if="isAutenticated && !$store.state.googleLogin_user"
             class="button_link"
+            v-if="isAutenticated && !$store.state.googleLogin_user"
             color="#EF5350"
             style="color: white; margin: 2% 0 0 6%"
             @click="deletePost(post.name)"
-            >削除する</v-btn
-          >
+            ><i class="fas fa-trash-alt"></i
+          ></v-btn>
           <v-container style="display: flex; justify-content: space-between">
             <v-card-actions>
               <v-row justify="space-around">
@@ -35,6 +35,7 @@
                         v-bind="attrs"
                         v-on="on"
                         style="color: #ffffff"
+                        class="detailButton"
                         >詳しい情報を見る</v-btn
                       >
                     </template>
@@ -127,6 +128,7 @@
     <v-pagination
       v-model="page"
       :length="length"
+      color="#FF841F"
       style="margin-bottom: 3%"
       @input="pageChange"
     ></v-pagination>
@@ -253,6 +255,14 @@ export default {
   width: 100%;
   text-align: center;
   padding: 0 2% 5%;
+}
+.button_link {
+  height: 30px !important;
+  font-size: 13px;
+}
+.detailButton {
+  height: 45px !important;
+  font-size: 15px;
 }
 .postButton {
   height: 65px !important;
