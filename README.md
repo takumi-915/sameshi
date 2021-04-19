@@ -15,7 +15,6 @@ https:
 
 ## 実装機能
 
-- SPA化
 - ユーザー管理機能(ユーザー登録/ログイン/ログアウト)
 - Googoleログイン
 - GoogleMAP表示/検索機能
@@ -33,6 +32,7 @@ https:
 
 ## アプリ構成
 
+- SPA
 - フロントエンド
   - HTML/CSS
   - JavaScript
