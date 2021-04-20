@@ -10,8 +10,8 @@ https:
 
 ## テストアカウント
 
-- メールアドレス：sample@mail.com
-- パスワード：sample
+- メールアドレス：guest@mail.com
+- パスワード：sameshi876
 
 ## 実装機能
 
