@@ -158,17 +158,6 @@ import firebase from "../firebase/firebase";
 import GoogleMap from "./GoogleMap.vue";
 import { mapGetters } from "vuex";
 
-// export default {
-//   name: "Main",
-//   data: () => ({
-//     posts: [],
-//   }),
-//   firestore() {
-//     return {
-//       // firestoreのcommentsコレクションを参照
-//       posts: db.collection("posts").orderBy("createdAt"),
-//     };
-//   },
 var db = firebase.firestore();
 export default {
   data() {
@@ -177,7 +166,7 @@ export default {
       show: false,
       page: 1,
       displayPosts: [],
-      pageSize: 9,
+      pageSize: 6,
       length: 0,
       likeSum: 0,
     };

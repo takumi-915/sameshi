@@ -57,11 +57,9 @@
 </template>
 
 <script>
-// import axios from "axios";
 import router from "../router";
 import firebase from "firebase/app";
 import "firebase/storage";
-// import { mapActions } from "vuex";
 import { db } from "../firebase/firebase";
 
 export default {
@@ -72,7 +70,6 @@ export default {
       errorMessage: "",
       reset: true,
       satisfaction: 3,
-      // post: {},
     };
   },
   methods: {
@@ -112,31 +109,6 @@ export default {
     },
 
     onSubmit() {
-      // this.addPost(this.post);
-      // router.push("/postDone");
-      // this.post = {};
-      // axios
-      //   .post("/posts", {
-      //     fields: {
-      //       restaurant: {
-      //         stringValue: this.restaurant,
-      //       },
-      //       menu: {
-      //         stringValue: this.menu,
-      //       },
-      //       detail: {
-      //         stringValue: this.detail,
-      //       },
-      //       sauna: {
-      //         stringValue: this.sauna,
-      //       },
-      //     },
-      //   })
-      //   .then((response) => {
-      //     this.inputFileReset();
-      //     console.log(response);
-      //   });
-      // コメントをFirestoreへ登録
       db.collection("posts")
         .add({
           restaurant: this.restaurant,
@@ -159,7 +131,6 @@ export default {
         this.reset = true;
       });
     },
-    // ...mapActions(["addPost"]),
   },
 };
 </script>
