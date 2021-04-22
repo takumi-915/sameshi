@@ -1,8 +1,8 @@
 # サ飯Log
 サ飯とは、「サウナ飯」の略。  
 「ととのった」あとに食べるご飯は格別です。  
-サウナ後に何を食べるか迷ったときに使うことを想定して制作しました。
-![トップページ](https://user-images.githubusercontent.com/59188083/75506838-9695a980-5a22-11ea-953e-4190464b4404.jpg)
+サウナ後に何を食べるか迷ったときに使うことを想定して作成しました。
+![スクリーンショット 2021-04-18 23 40 07](https://user-images.githubusercontent.com/59188083/115245596-0f445180-a160-11eb-9846-dd8fb35aac74.png)
 
 ## リンク
 
@@ -10,12 +10,11 @@ https:
 
 ## テストアカウント
 
-- メールアドレス：
-- パスワード：
+- メールアドレス：guest@mail.com
+- パスワード：sameshi876
 
 ## 実装機能
 
-- SPA化
 - ユーザー管理機能(ユーザー登録/ログイン/ログアウト)
 - Googoleログイン
 - GoogleMAP表示/検索機能
@@ -27,17 +26,21 @@ https:
 - 画像アップロード機能
 - ページネーション機能
 - ログイン情報の保持
+- いいね機能(実装中)
 
 **今後も随時追加で機能を実装予定です。**
 
 ## アプリ構成
 
-|種別|名称|
-|------|----|
-|開発言語|Ruby（ver 2.5.1）|
-|マークアップ|HTML|
-|フロントエンド|Vue.js)|
-|DB|Cloud Firestore|
-|本番環境|Hosting|
-|ユーザー管理|Authentication|
-|画像保存|Cloud Storage|
+- SPA
+- フロントエンド
+  - HTML/CSS
+  - JavaScript
+  - Vue.js(2.6.12)
+  - Vuetify
+- バックエンド
+  - Firebase
+    - Authentication(ユーザー管理)
+    - Hosting(本番環境)
+    - Storage(画像保存)
+    - Cloud Firestore(DB)
