@@ -6,7 +6,7 @@
 
 ## リンク
 
-https:
+https://sameshi.com
 
 ## テストアカウント
 
